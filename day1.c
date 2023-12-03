@@ -55,7 +55,29 @@ int tonumber(char *start) {
     return -1;
 }
 
-int process_line(char *buffer, bool debug) {
+int process_line_p1(char *buffer) {
+    int first_digit = 0;
+    int last_digit = 0;
+    int strlength = strlen(buffer);
+
+    for (int i = 0; i < strlength; i++) {
+        if (isdigit(&buffer[i])) {
+            first_digit = &buffer[i] - '0';
+            break;
+        }
+    }
+
+    for (int i = strlength; i >= 0; i--) {
+        if (isdigit(&buffer[i])) {
+            last_digit = &buffer[i] - '0';
+            break;
+        }
+    }
+
+    return (first_digit * 10) + last_digit;
+}
+
+int process_line_p2(char *buffer, bool debug) {
     int first_digit = 0;
     int last_digit = 0;
     int strlength = strlen(buffer);
@@ -89,7 +111,7 @@ int main(int argc, char **argv) {
     while (!feof(fp)) {
         memset(buffer, 0, 70);
         fgets(buffer, 70, fp);
-        int result = process_line(buffer, lines < 5);
+        int result = process_line_p2(buffer, lines < 5);
         sum += result;
         if (result == 0) {
             printf("check line: %"PRIu32"\n", lines);
