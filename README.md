@@ -1,0 +1,2 @@
+# Advent of Code 2023
+Welcome to my Advent of Code 2023 repository! As you may have already noticed, the first few solutions are all written using only the C standard library. As of writing this, I am already considering giving up writing the rest of my solutions.
