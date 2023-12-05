@@ -1,2 +1,2 @@
 # Advent of Code 2023
-Welcome to my Advent of Code 2023 repository! As you may have already noticed, the first few solutions are all written using only the C standard library. As of writing this, I am already considering giving up writing the rest of my solutions.
+Welcome to my Advent of Code 2023 repository! As you may have already noticed, the first few solutions are all written in C. As of finishing Day 4, I am already considering giving up writing the rest of my solutions in C, and switching to a language that at least has support for printing out arrays (even if it's relatively trivial to do in C).
