@@ -12,10 +12,10 @@ def fill_map(fp, mapper: dict[range, range]):
         if (len(result.split())) == 0:
             print("this must be eof...")
             break
-        new, old, length = tuple(map(int, result.split()))
-        print(new, old, length)
+        dest_start, src_start, length = tuple(map(int, result.split()))
+        print(dest_start, src_start, length)
 
-        mapper.update({range(old, old + length): range(new, new + length)})
+        mapper.update({range(src_start, src_start + length): range(dest_start, dest_start + length)})
         result = fp.readline()
 
 def fill_container(old_list: list[int], new_list: list[int], mapper: dict[range, range]):
@@ -35,12 +35,12 @@ def fill_container(old_list: list[int], new_list: list[int], mapper: dict[range,
     assert len(old_list) == len(new_list), f"what the fuck? {len(old_list)} {len(new_list)}"
 
 def map_tup(old: tuple[int], mapper: dict[range, range]) -> tuple[int]:
-    def get_new(elem: int):
-        for key, value in mapper.items():
-            if elem in key:
-                assert elem - key.start + value.start in value, "what...?"
-                return value.start + (elem - key.start)
-        return elem
+    def get_new(seed: int):
+        for source, dest in mapper.items():
+            if seed in source:
+                assert seed - source.start + dest.start in dest, "what...?"
+                return dest.start + (seed - source.start)
+        return seed
     
     return (get_new(elem) for elem in old)
 
